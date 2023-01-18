@@ -2,16 +2,10 @@ from sys import exit
 import json
 
 
-def dataMentah(mahasiswa: dict) -> dict:
-    simpan = {}
-    n = input("Masukan NIM : ")
-    if n not in mahasiswa: 
-        nama = input("Masukan Nama : ")
-        asal = input("Masukan Asal : ")
-        simpan["Nama"] = nama
-        simpan["Asal"] = asal
-        mahasiswa[n] = simpan
-    return mahasiswa         
+def addNewData() -> dict:
+    nama = input("Masukan Nama : ")
+    asal = input("Masukan Asal : ")
+    return {"Nama":nama, "Asal":asal}         
 
 # json buat, baca, bahrui, hapus data
 def buat_json(mahasiswa):
@@ -39,7 +33,12 @@ def main(mahasiswa: dict):
         print("0. Keluar\n")
         p = int(input("Masukan Pilihan : "))
         if p == 1:
-            dataMentah(mahasiswa)
+            n = input("Masukan NIM : ")
+            if n not in mahasiswa:
+                umum = addNewData()
+                mahasiswa[n] = umum
+            else:
+                print("Data tersedia")
             buat_json(mahasiswa)
         if p == 2:
             n = input("Masukan NIM : ")
@@ -52,17 +51,18 @@ def main(mahasiswa: dict):
             n = input("Masukan NIM : ")
             if n in mahasiswa:
                 del mahasiswa[n]
+                buat_json(mahasiswa)
                 print("Data terhapus")
+            else:
+                print("Data tidak tersedia")
         if p == 0:
-            break
+            exit()
 
 
 
 if __name__=="__main__":
     mahasiswa = {} 
     main(mahasiswa)
-    print(baca_json())
-    exit()
 
 
 
