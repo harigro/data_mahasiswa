@@ -1,2 +1,2 @@
 # data_mahasiswa
-data_mahasiswa berisi kode untuk data mahasiswa berupa NIM(Nomor Induk Mahasiswa), nama, dan tempat tinggal mahasiswa tersebut.
+data_mahasiswa adalah program sistem manajemen yang menerima data berupa NIM(Nomor Induk Mahasiswa), nama, dan tempat tinggal mahasiswa, menyimpan dalam format berkas json dan menampilkannya. Sistem ini dimaksudkan semirip mungkin dengan sistem manajemen universitas umum di indonesia. Dalam program sistem manajemen ini tidak tersedia antarmuka pengguna, hanya tersedia dan akses menggunakan terminal.
