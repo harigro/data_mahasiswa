@@ -1,6 +1,7 @@
+import json
+import pprint
 from sys import exit
-from crud_json import setDataJsonFile, getDataJsonFile
-import json, pprint
+from tinydb import TinyDB, where
 
 
 def addNewData() -> dict:
@@ -9,6 +10,8 @@ def addNewData() -> dict:
     return {"Nama":nama, "Asal":asal}
 
 def main(mahasiswa: dict):
+    data = None
+    db = TinyDB("database/mahasiswa.json")
     pp = pprint.PrettyPrinter(indent=4, sort_dicts=False)
     while True:
         print("\n1. Buat")
@@ -23,9 +26,9 @@ def main(mahasiswa: dict):
                 mahasiswa[n] = umum
             else:
                 print("Data tersedia")
-            setDataJsonFile(mahasiswa, "db.json")
+            db.insert(mahasiswa)
         if p == 2:
-            pp.pprint(getDataJsonFile("db.json"))
+            pp.pprint(db.all())
         if p == 3:
             pp.pprint(getDataJsonFile("db.json"))
             n = input("Masukan NIM : ")
@@ -43,22 +46,4 @@ def main(mahasiswa: dict):
 if __name__=="__main__":
     mahasiswa = {} 
     main(mahasiswa)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
